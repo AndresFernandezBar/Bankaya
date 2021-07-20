@@ -1,0 +1,14 @@
+#Create collections and add data to them
+
+db.Customers.insertMany([
+   {"firstname":"Bruce","lastname":"Wayne"},
+    {"firstname":"Clark","lastname":"Kent"},
+    {"firstname":"Tony","lastname":"Stark"}
+])
+
+
+db.Items.insertMany([
+   {"title":"USM","price":10.2},
+    {"title":"Mouse","price":12.23},
+    {"title":"Monitor","price":199.99}
+])
