@@ -1,0 +1,9 @@
+#In a sh based terminal run
+
+crontab -e
+
+#Then on the vim editor press i and insert the following (replacing <path to bankaya.py file> with the path where the bankaya.py file is located)
+
+0 12 * * * python3 <path to bankaya.py file>/bankaya.py
+
+#Then press ESC and write :wq and press ENTER and save
