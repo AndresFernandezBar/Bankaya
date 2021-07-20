@@ -1,0 +1,54 @@
+#Create Schema
+
+CREATE TABLE Customers(
+  id INT unsigned NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(150) NOT NULL,
+  last_name       VARCHAR(150) NOT NULL,
+  phone_number    CHAR(10) NOT NULL,
+  CURP            CHAR(18) NOT NULL,
+  RFC             CHAR(13) NOT NULL,
+  street	    VARCHAR(150) NOT NULL,
+  external_number   CHAR(5) NULL,
+  internal_number   CHAR(5) NOT NULL,
+  delegation      VARCHAR(150) NOT NULL,
+  suburb          VARCHAR(150) NOT NULL,
+  state           VARCHAR(150) NOT NULL,
+  city            VARCHAR(150) NOT NULL,
+  zip_code        CHAR(5),
+  country         VARCHAR(150) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+
+CREATE TABLE Items(
+  id INT unsigned NOT NULL AUTO_INCREMENT,
+  item_name VARCHAR(150) NOT NULL,
+  item_price  DECIMAL(7,2) NOT NULL,
+   PRIMARY KEY(id)
+);
+
+
+CREATE TABLE Items_Bought(
+  order_number INT unsigned NOT NULL AUTO_INCREMENT,
+  date DATE NOT NULL,
+  total  DECIMAL(20,2) NOT NULL,
+  comment  VARCHAR(500) NULL,
+  item INT unsigned NOT NULL,
+  customer INT unsigned NOT NULL, 
+   PRIMARY KEY(order_number),
+FOREIGN KEY(item) REFERENCES Items(id),
+FOREIGN KEY(customer) REFERENCES Customers(id)
+);
+
+
+#Insert Test Data
+
+INSERT INTO Customers(first_name, last_name, phone_number, CURP, RFC, street, external_number, internal_number, delegation, suburb, state, city, zip_code, country) VALUES ('Tom', 'Selleck', '1234567890', '123456789012345678', '1234567890123', 'calle', '1', 'NULL', 'delegacion', 'colonia', 'estado', 'ciudad', '12345', 'pais'), ('Al', 'Pacino', '5555555555', 'abcdefghijklmnopqr', 'abcdefghijklm', 'street', '5', '6', 'delegation', 'suburb', 'state', 'city', '54321', 'country');
+VALUES ('Tom', 'Selleck', '1234567890', '123456789012345678', '1234567890123', 'calle', '1', 'NULL', 'delegacion', 'colonia', 'estado', 'ciudad', '12345', 'pais')
+('Al', 'Pacino', '5555555555', 'abcdefghijklmnopqr', 'abcdefghijklm', 'street', '5', '6', 'delegation', 'suburb', 'state', 'city', '54321', 'country');
+
+
+INSERT INTO Items(item_name, item_price) VALUES ('keyboard', 14.67), ('mousepad', 9.99), ('SSD', 400);
+
+
+INSERT INTO Items_Bought(date, total, comment, item, customer) VALUES ('2020-01-01', '400', NULL, 3, 1), ('2020-01-01', '14.67', NULL, 1, 1), ('2021-05-18', '9.99', 'nice mouse', 2, 2);
